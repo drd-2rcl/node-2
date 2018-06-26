@@ -69,16 +69,16 @@
 		</nav>
 
 		<div class="container">
-            <div class="row conversa" id="conversa">
+      <div class="row conversa" id="conversa">
 				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<div class="dialogo">
+				<div class="col-md-10" id="dialogos">
+					<!-- <div class="dialogo">
 						<h4>Jorge</h4>
 						<p>Fala José, blz cara?</p>
 					</div>
 
 					<div class="dialogo">
-						<h4>José</h4>
+						<h4>José</h4>i
 						<p>Opa, tudo certo!</p>
 					</div>
 
@@ -95,11 +95,11 @@
 					<div class="dialogo">
 						<h4>Jorge</h4>
 						<p>Show de bola, comunicação bi-direcional em páginas ou sistemas web é muito bacana mesmo</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-md-1"></div>
 
-            </div>
+      </div>
 
 			<div class="row participantes" id="participantes" style="display:none">
 				<div class="col-md-1"></div>
@@ -145,6 +145,18 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			var socket = io('http://localhost:3000');
+
+			socket.on('msgParaCliente', function(data){
+		    var html = '';
+
+				html += '<div class="dialogo">';
+					html += '<h4>' + data.apelido + '</h4>';
+					html += '<p>' + data.mensagem + '</p>';
+				html += '</div>'
+
+				$('#dialogos').append(html);
+		  });
+
 		</script>
 
 	</body>
